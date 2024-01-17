@@ -1,152 +1,69 @@
-2<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resume - Pothuraju Jayakrishna Yadav</title>
+    <title>Login</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #ebedee;
+            background-color: #f5f5f5;
+            color: #333;
+            text-align: center;
+            padding-top: 50px;
         }
 
-        h1 {
-            color: #007bff;
+        form {
+            max-width: 300px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
         }
 
-        h2 {
-            color: #007bff;
-        }
-
-        ul {
-            list-style-type: none;
-            padding-left: 0;
-        }
-
-        li {
+        input {
+            width: 100%;
+            padding: 10px;
             margin-bottom: 10px;
         }
 
-        a {
-            color: #007bff;
-            text-decoration: none;
-        }
-
-        img {
-            max-width: 15%;
-            height: auto;
-            display: block;
-            margin: 1px 10;
-        }
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        button {
+            background-color: #007bff;
+            color: #fff;
             padding: 10px;
-            position: absolute;
-            top: 15px;
-            right: -300px;
-        }
-        .section-title {
-            text-align: left;
-            padding-left: 0.5%;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <!-- Placeholder for your photo -->
-        
-    </div>
-    <div>
-        <h1><center>Resume - Pothuraju Jayakrishna Yadav</center></h1>
-        <img src="jayak.jpg" alt="Pothuraju Jayakrishna Yadav">
-    </div>
+    <form id="loginForm">
+        <h2>Login</h2>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
 
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
 
+        <button type="button" onclick="login()">Login</button>
+    </form>
 
+    <script>
+        function login() {
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
 
-    <h2 class="section-title">CAREER OBJECTIVE:</h2>
-    <p class="section-title">To adapt and learn new operations which help me to improve my knowledge and skills. </p>
-    <p class="section-title">I also want to be a valuable asset for the organization. </p>
-    
-    <h2 class="section-title">EDUCATIONAL QUALIFICATIONS:</h2>
-    <ul class="section-title">
-        <li class="section-title">B.Tech(CSE) - Pursuing (2024) - Jawaharlal Nehru Technological University, Hyderabad</li>
-        <li class="section-title">12th Standard Intermediate - Board of Secondary Education</li>
-        <li class="section-title">10th Standard - Secondary School - Avenue Grammar High School, Green Park Colony</li>
-    </ul>
-
-    <h2 class="section-title">ACHIEVEMENTS:</h2>
-
-
-    <ul class="section-title">
-        <li></li>
-        <li class="section-title">Awarded in Mega Olympiad program conducted by e-Abhyas academy IIT & NEET.</li>
-    </ul>
-
-    <h2 class="section-title">TECHNICAL SKILLS:</h2>
-    <ul class="section-title">
-        <li class="section-title">Core Java</li>
-        
-        <h4 class="section-title">Linux</h4>
-        <li>Operating Systems: Linux (Ubuntu, CentOS), Windows</li>
-      <li>Programming Languages: Python, Bash, Java, C++</li>
-    <li>Version Control: Git, GitHub</li>
-    <li>Infrastructure as Code: Terraform</li>
-    <li>Configuration Management: Ansible</li>
-    <li>Continuous Integration/Continuous Deployment: Jenkins</li>
-    <li>Containerization: Docker</li>
-    <li>Orchestration: Kubernetes</li>
-    <li>Monitoring and Logging: ELK Stack (Elasticsearch, Logstash, Kibana) Grafana</li>
-    <li>Cloud Technologies: Amazon Web Services (AWS)</li>
-    <li>Networking: TCP/IP, DNS, Load Balancing</li>
-    <li>Scripting: Shell scripting, PowerShell</li>
-    <ul class="section-title">
-        <li>Installed and configured Linux distributions.</li>
-        <li>Automated tasks using shell scripting.</li>
-        <li>Implemented backup solutions.</li>
-        <li>Transferred files between machines using SCP.</li>
-        <li>Linux CentOS 7 Cron and Anacron Automation</li>
-    </ul>
-
-    <h4 class="section-title">Mattermost</h4>
-    <ul class="section-title">
-        <li>Installed and configured Mattermost messaging platform.</li>
-        <li>Connected Mattermost to MySQL.</li>
-        <li>redirected the traffic mattermost to nginx that means when i access nginx it will show mattermost page</li>
-    </ul>
-
-    <h4 class="section-title">Nginx</h4>
-    <ul class="section-title">
-        <li>Installed and configured Nginx.</li>
-        <li>Configured Nginx as a load balancer.</li>
-    </ul>
-
-    <h4 class="section-title">Docker</h4>
-    <ul class="section-title">
-        <li>Created Docker images using Dockerfiles.</li>
-        <li>Created and managed containers.</li>
-        <li>Pushed Docker images to Docker Hub.</li>
-    </ul>
-
-    <h4 class="section-title">Docker Compose</h4>
-    <ul class="section-title">
-        <li>Used Docker Compose to define and manage multi-container applications.</li>
-        <li>Installed and configured Mattermost, Nginx, and MySQL using Docker Compose.</li>
-    </ul>
-   
-    
-
-    <h2 class="section-title">CONTACT INFORMATION:</h2>
-    <ul class="section-title">
-        <li>Email: jayakrishnayadav24@gmail.com</li>
-        <li>Phone: +91 8978960371</li>
-        <li>LinkedIn: <a href="https://www.linkedin.com/in/pothuraju-jayakrishna-yadav-bb329a26b">https://www.linkedin.com/in/pothuraju-jayakrishna-yadav-bb329a26b</a></li>
-    </ul>
-
-    
+            // Check credentials
+            if (username === 'admin' && password === 'admin') {
+                window.location.href = 'resume.html'; // Redirect to the resume page
+            } else {
+                alert('Invalid credentials. Please try again.');
+            }
+        }
+    </script>
 </body>
 </html>
