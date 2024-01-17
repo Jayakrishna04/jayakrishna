@@ -25,9 +25,29 @@
         }
 
         input {
-            width: 100%;
+            width: calc(100% - 20px);
             padding: 10px;
             margin-bottom: 10px;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .password-container {
+            position: relative;
+        }
+
+        #password {
+            width: calc(100% - 40px);
+        }
+
+        .eye-icon {
+            position: absolute;
+            top: 50%;
+            right: 5px;
+            transform: translateY(-50%);
+            cursor: pointer;
         }
 
         button {
@@ -46,24 +66,52 @@
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required>
 
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
+        <label for="password" class="password-container">Password:
+            <input type="password" id="password" name="password" required>
+            <span class="eye-icon" onclick="togglePassword()">👁️</span>
+        </label>
 
         <button type="button" onclick="login()">Login</button>
     </form>
-
     <script>
         function login() {
             var username = document.getElementById('username').value;
-            var password = document.getElementById('password').value;
-
+            var passwordInput = document.getElementById('password');
+            var password = passwordInput.value;
+    
             // Check credentials
-            if (username === 'admin' && password === 'admin') {
-                window.location.href = 'resume.html'; // Redirect to the resume page
-            } else {
-                alert('Invalid credentials. Please try again.');
+            switch (username) {
+                case 'admin':
+                    if (password === 'admin') {
+                        window.location.href = 'resume.html'; // Redirect to the resume page for admin
+                    } else {
+                        alert('Invalid password. Please try again.');
+                    }
+                    break;
+                case 'jayakrishna':
+                    if (password === 'jayakrishna') {
+                        window.location.href = 'myresume.html'; // Redirect to myresume page for jayakrishna
+                    } else {
+                        alert('Invalid password. Please try again.');
+                    }
+                    break;
+                default:
+                    alert('Invalid username. Please try again.');
             }
         }
-    </script>
+    
+        function togglePassword() {
+            var passwordInput = document.getElementById('password');
+            var eyeIcon = document.querySelector('.eye-icon');
+    
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                eyeIcon.textContent = '👁️';
+            } else {
+                passwordInput.type = 'password';
+                eyeIcon.textContent = '👁️';
+            }
+        }
+    </script>    
 </body>
 </html>
