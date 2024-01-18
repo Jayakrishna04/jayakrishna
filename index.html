@@ -9,16 +9,18 @@
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f5f5f5;
-            color: #333;
+            background: url('image.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
             text-align: center;
             padding-top: 50px;
+            overflow: hidden; /* To hide scrollbars caused by the moving GIFs */
         }
 
         form {
             max-width: 300px;
             margin: 0 auto;
-            background-color: #fff;
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
@@ -41,6 +43,18 @@
         #password {
             width: calc(100% - 40px);
         }
+        h1, h2, h3 {
+            color: #007bff;
+        }
+
+        h2 {
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 5px;
+            margin-top: 20px;
+        }
+        label {
+            color: #007bff;
+        }
 
         .eye-icon {
             position: absolute;
@@ -58,9 +72,27 @@
             border-radius: 4px;
             cursor: pointer;
         }
+
+        /* Style for moving GIFs */
+        .moving-gif {
+            position: absolute;
+            top: 80%;
+            transform: translateY(-50%);
+            animation: moveLeftToRight 10s linear infinite;
+        }
+
+        @keyframes moveLeftToRight {
+            0% { left: -100px; }
+            100% { left: calc(100% + 100px); }
+        }
     </style>
 </head>
 <body>
+    <!-- Moving GIFs -->
+    <img class="moving-gif" src="https://i.pinimg.com/originals/cc/da/83/ccda8381c1db3cf9678f90d520ca41cd.gif" alt="Dog" style="animation-delay: 6s;">
+    <img class="moving-gif" src="https://www.chiquipedia.com/images/gifs-gatos-ninos.gif" alt="Cat" style="animation-delay: 3s;">
+    <img class="moving-gif" src="https://th.bing.com/th/id/R.a5bf8a7946c3710e6200ad6426f3b270?rik=DmR8Dgfvy1gsVQ&riu=http%3a%2f%2ffc07.deviantart.net%2ffs71%2ff%2f2010%2f232%2fb%2f5%2fTest_by_Ludolik.gif&ehk=520kEkPD9WnYa%2fzExK%2bUtN5iwXw78ioG%2b1cAmnGxCcA%3d&risl=&pid=ImgRaw&r=0" alt="Rat" style="animation-delay: 1s;">
+
     <form id="loginForm">
         <h2>Login</h2>
         <label for="username">Username:</label>
@@ -73,12 +105,13 @@
 
         <button type="button" onclick="login()">Login</button>
     </form>
+
     <script>
         function login() {
             var username = document.getElementById('username').value;
             var passwordInput = document.getElementById('password');
             var password = passwordInput.value;
-    
+
             // Check credentials
             switch (username) {
                 case 'admin':
@@ -99,11 +132,11 @@
                     alert('Invalid username. Please try again.');
             }
         }
-    
+
         function togglePassword() {
             var passwordInput = document.getElementById('password');
             var eyeIcon = document.querySelector('.eye-icon');
-    
+
             if (passwordInput.type === 'password') {
                 passwordInput.type = 'text';
                 eyeIcon.textContent = '👁️';
@@ -112,6 +145,8 @@
                 eyeIcon.textContent = '👁️';
             }
         }
-    </script>    
+    </script>
 </body>
 </html>
+
+
