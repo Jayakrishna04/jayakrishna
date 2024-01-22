@@ -24,6 +24,7 @@
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         function checkAuthState() {
+            console.log('Checking auth state...');
             onAuthStateChanged(auth, user => {
                 if (user) {
                     console.log('User is signed in:', user.email);
