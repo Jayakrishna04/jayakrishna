@@ -23,31 +23,21 @@
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
-    </script>
-</head>
-<body>
-    <!-- Sign-up form -->
-    <form>
-    <h2>Sign Up</h2>
-    <input type="email" id="signupEmail" placeholder="Email" autocomplete="username">
-    <input type="password" id="signupPassword" placeholder="Password" autocomplete="current-password">
-    <button onclick="signUp()">Sign Up</button>
-    </form>
-    
-
-    <!-- Sign-in form -->
-    <form>
-    <h2>Sign In</h2>
-    <input type="email" id="signinEmail" placeholder="Email" autocomplete="username">
-    <input type="password" id="signinPassword" placeholder="Password" autocomplete="current-password">
-    <button onclick="signIn()">Sign In</button>
-    </form>
-    
-
-    <!-- Your other HTML content goes here -->
-
-    <script type="module">
-        // Function to sign up a new user
+        function checkAuthState() {
+            onAuthStateChanged(auth, user => {
+                if (user) {
+                    console.log('User is signed in:', user.email);
+                    
+                    // Redirect to resume.html or perform other actions for signed-in users
+                    window.location.href = 'resume.html';
+                } else {
+                    console.log('No user signed in.');
+                }
+            });
+        }
+        document.addEventListener('DOMContentLoaded', () => {
+            checkAuthState();
+        });
         async function signUp() {
             const email = document.getElementById('signupEmail').value;
             const password = document.getElementById('signupPassword').value;
@@ -75,24 +65,27 @@
                 console.error('Error during sign-in:', error.message);
             }
         }
-
-        // Function to check if a user is signed in
-        function checkAuthState() {
-            onAuthStateChanged(auth, user => {
-                if (user) {
-                    console.log('User is signed in:', user.email);
-                    
-                    // Redirect to resume.html or perform other actions for signed-in users
-                    window.location.href = 'resume.html';
-                } else {
-                    console.log('No user signed in.');
-                }
-            });
-        }
-
-        // Check authentication state on page load
-        document.addEventListener('DOMContentLoaded', checkAuthState);
     </script>
+</head>
+<body>
+    <!-- Sign-up form -->
+    <form>
+    <h2>Sign Up</h2>
+    <input type="email" id="signupEmail" placeholder="Email" autocomplete="username">
+    <input type="password" id="signupPassword" placeholder="Password" autocomplete="current-password">
+    <button onclick="signUp()">Sign Up</button>
+    </form>
+    
+
+    <!-- Sign-in form -->
+    <form>
+    <h2>Sign In</h2>
+    <input type="email" id="signinEmail" placeholder="Email" autocomplete="username">
+    <input type="password" id="signinPassword" placeholder="Password" autocomplete="current-password">
+    <button onclick="signIn()">Sign In</button>
+    </form>
+
+
 </body>
 </html>
 
