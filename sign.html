@@ -7,16 +7,16 @@
     <!-- Include the Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.2/firebase-auth.js"></script>
-    <script type="module">
+    <script>
         // Your web app's Firebase configuration
         const firebaseConfig = {
-          apiKey: "AIzaSyCkV3t8D9id4AH9p-GLfLHys-cPUDtzhnA",
-          authDomain: "jayas-1db92.firebaseapp.com",
-          projectId: "jayas-1db92",
-          storageBucket: "jayas-1db92.appspot.com",
-          messagingSenderId: "695257723268",
-          appId: "1:695257723268:web:3cf02d01db5dca110bedd1",
-          measurementId: "G-KZNBP5PPCQ"
+            apiKey: "AIzaSyCkV3t8D9id4AH9p-GLfLHys-cPUDtzhnA",
+            authDomain: "jayas-1db92.firebaseapp.com",
+            projectId: "jayas-1db92",
+            storageBucket: "jayas-1db92.appspot.com",
+            messagingSenderId: "695257723268",
+            appId: "1:695257723268:web:3cf02d01db5dca110bedd1",
+            measurementId: "G-KZNBP5PPCQ"
         };
 
         // Initialize Firebase
@@ -28,8 +28,6 @@
             firebase.auth().onAuthStateChanged(user => {
                 if (user) {
                     console.log('User is signed in:', user.email);
-                    
-                    // Redirect to resume.html or perform other actions for signed-in users
                     window.location.replace('resume.html');
                 } else {
                     console.log('No user signed in.');
@@ -40,8 +38,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             checkAuthState();
         });
-    </script>
-    <script>
+
         async function signUp() {
             const email = document.getElementById('signupEmail').value;
             const password = document.getElementById('signupPassword').value;
