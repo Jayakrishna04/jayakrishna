@@ -182,31 +182,6 @@
                 eyeIcon.textContent = '👁️';
             }
         }
-        document.addEventListener('DOMContentLoaded', function () {
-                // Check if the user is not authenticated
-                if (!isAuthenticated()) {
-                    // Redirect to the login page
-                    window.location.href = 'index.html';
-                }
-            });
-
-            // Authentication logic
-            function isAuthenticated() {
-                // Replace this with your actual authentication logic
-
-                // Get stored credentials from localStorage (example)
-                const storedUsername = localStorage.getItem('username');
-                const storedPassword = localStorage.getItem('password');
-
-                // Check if credentials exist in localStorage
-                if (storedUsername && storedPassword) {
-                    // User is considered authenticated
-                    return true;
-                } else {
-                    // User is not authenticated
-                    return false;
-                }
-            }
     </script>
 </body>
 </html>
