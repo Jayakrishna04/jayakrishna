@@ -3,98 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Authentication</title>
-    <style>
-        /* Your styles go here */
-    </style>
-</head>
-<body>
-    <form id="signupForm">
-        <label for="signupUsername">Username:</label>
-        <input type="text" id="signupUsername" name="signupUsername" required>
-
-        <label for="signupPassword">Password:</label>
-        <input type="password" id="signupPassword" name="signupPassword" required>
-
-        <button type="button" onclick="signup()">Sign Up</button>
-    </form>
-
-    <hr>
-
-    <form id="loginForm">
-        <label for="loginUsername">Username:</label>
-        <input type="text" id="loginUsername" name="loginUsername" required>
-
-        <label for="loginPassword">Password:</label>
-        <input type="password" id="loginPassword" name="loginPassword" required>
-
-        <button type="button" onclick="login()">Login</button>
-    </form>
+    <title>Login and Signup</title>
+    <!-- Include Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
 
     <script>
-        function signup() {
-            const username = document.getElementById('signupUsername').value;
-            const password = document.getElementById('signupPassword').value;
+        // Configure Firebase with your project's config
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_AUTH_DOMAIN",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_STORAGE_BUCKET",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
 
-            // Read existing user data
-            fetch('users.txt')
-                .then(response => response.text())
-                .then(userData => {
-                    // Check if the username already exists
-                    const existingUsers = userData.split('\n');
-                    const isExistingUser = existingUsers.some(user => user.split(':')[0] === username);
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
 
-                    if (isExistingUser) {
-                        alert('Username already exists. Please choose a different one.');
-                    } else {
-                        // Append new user to the text file
-                        const newUser = `${username}:${password}\n`;
-                        const updatedUserData = userData + newUser;
+        // Function to sign up using Google
+        function signupWithGoogle() {
+            const provider = new firebase.auth.GoogleAuthProvider();
 
-                        // Save updated user data
-                        saveToFile('users.txt', updatedUserData);
-
-                        alert('Sign up successful! Now you can log in.');
-                    }
+            firebase.auth().signInWithPopup(provider)
+                .then((result) => {
+                    const user = result.user;
+                    console.log(user);
+                    alert('Sign up successful! Now you can log in.');
                 })
-                .catch(error => console.error('Error reading user data:', error));
+                .catch((error) => {
+                    console.error(error.message);
+                    alert('Sign up failed. Please try again.');
+                });
         }
 
-        function login() {
-            const username = document.getElementById('loginUsername').value;
-            const password = document.getElementById('loginPassword').value;
+        // Function to log in using Google
+        function loginWithGoogle() {
+            const provider = new firebase.auth.GoogleAuthProvider();
 
-            // Read user data from the text file
-            fetch('users.txt')
-                .then(response => response.text())
-                .then(userData => {
-                    // Check if the username and password match
-                    const users = userData.split('\n');
-                    const isValidUser = users.some(user => {
-                        const [storedUsername, storedPassword] = user.split(':');
-                        return username === storedUsername && password === storedPassword;
-                    });
-
-                    if (isValidUser) {
-                        alert('Login successful!');
-                        window.location.href = 'resume.html';
-                    } else {
-                        alert('Invalid username or password. Please try again.');
-                    }
+            firebase.auth().signInWithPopup(provider)
+                .then((result) => {
+                    const user = result.user;
+                    console.log(user);
+                    alert('Login successful!');
+                    window.location.href = 'resume.html';
                 })
-                .catch(error => console.error('Error reading user data:', error));
-        }
-
-        function saveToFile(filename, content) {
-            // Save content to the text file (replace with secure server-side logic in a real application)
-            const blob = new Blob([content], { type: 'text/plain' });
-            const a = document.createElement('a');
-            a.href = URL.createObjectURL(blob);
-            a.download = filename;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
+                .catch((error) => {
+                    console.error(error.message);
+                    alert('Login failed. Please try again.');
+                });
         }
     </script>
+</head>
+<body>
+
+    <h2>Sign Up</h2>
+    <button onclick="signupWithGoogle()">Sign Up with Google</button>
+
+    <h2>Login</h2>
+    <button onclick="loginWithGoogle()">Login with Google</button>
+
 </body>
 </html>
