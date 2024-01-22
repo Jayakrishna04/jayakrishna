@@ -116,7 +116,7 @@
     <img class="moving-gif" src="https://www.chiquipedia.com/images/gifs-gatos-ninos.gif" alt="Cat" style="animation-delay: 3s;">
     <img class="moving-gifs" src="https://th.bing.com/th/id/R.a5bf8a7946c3710e6200ad6426f3b270?rik=DmR8Dgfvy1gsVQ&riu=http%3a%2f%2ffc07.deviantart.net%2ffs71%2ff%2f2010%2f232%2fb%2f5%2fTest_by_Ludolik.gif&ehk=520kEkPD9WnYa%2fzExK%2bUtN5iwXw78ioG%2b1cAmnGxCcA%3d&risl=&pid=ImgRaw&r=0" alt="Rat" style="animation-delay: 1s;">
 
-    <form id="loginForm">
+     <form id="loginForm">
         <h2>Login</h2>
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required>
@@ -129,8 +129,10 @@
         <button type="button" onclick="login()">Login</button>
     </form>
 
+
     <a class="game-link" href="node.html">Click here to play the sample game</a>
 
+    
     <script>
         function login() {
             var username = document.getElementById('username').value;
@@ -141,25 +143,28 @@
             switch (username) {
                 case 'admin':
                     if (password === 'admin') {
-                        window.location.href = 'resume.html'; // Redirect to the resume page for admin
+                        // Redirect to the resume page for admin
+                        window.location.href = 'resume.html';
                     } else {
                         alert('Invalid password. Please try again.');
                     }
                     break;
                 case 'jayakrishna':
                     if (password === 'jayakrishna') {
-                        window.location.href = 'myresume.html'; // Redirect to myresume page for jayakrishna
+                        // Redirect to myresume page for jayakrishna
+                        window.location.href = 'myresume.html';
                     } else {
                         alert('Invalid password. Please try again.');
                     }
                     break;
-                    case 'jaya':
+                case 'jaya':
                     if (password === 'jaya') {
-                        window.location.href = 'node.html'; // Redirect to myresume page for jayakrishna
+                        // Redirect to node page for jaya
+                        window.location.href = 'node.html';
                     } else {
                         alert('Invalid password. Please try again.');
                     }
-                    break;    
+                    break;
                 default:
                     alert('Invalid username. Please try again.');
             }
