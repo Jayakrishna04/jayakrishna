@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Authentication</title>
+    <style>
+        /* Your styles go here */
+    </style>
+</head>
+<body>
+    <form id="signupForm">
+        <label for="signupUsername">Username:</label>
+        <input type="text" id="signupUsername" name="signupUsername" required>
+
+        <label for="signupPassword">Password:</label>
+        <input type="password" id="signupPassword" name="signupPassword" required>
+
+        <button type="button" onclick="signup()">Sign Up</button>
+    </form>
+
+    <hr>
+
+    <form id="loginForm">
+        <label for="loginUsername">Username:</label>
+        <input type="text" id="loginUsername" name="loginUsername" required>
+
+        <label for="loginPassword">Password:</label>
+        <input type="password" id="loginPassword" name="loginPassword" required>
+
+        <button type="button" onclick="login()">Login</button>
+    </form>
+
+    <script>
+        function signup() {
+            const username = document.getElementById('signupUsername').value;
+            const password = document.getElementById('signupPassword').value;
+
+            // Read existing user data
+            fetch('users.txt')
+                .then(response => response.text())
+                .then(userData => {
+                    // Check if the username already exists
+                    const existingUsers = userData.split('\n');
+                    const isExistingUser = existingUsers.some(user => user.split(':')[0] === username);
+
+                    if (isExistingUser) {
+                        alert('Username already exists. Please choose a different one.');
+                    } else {
+                        // Append new user to the text file
+                        const newUser = `${username}:${password}\n`;
+                        const updatedUserData = userData + newUser;
+
+                        // Save updated user data
+                        saveToFile('users.txt', updatedUserData);
+
+                        alert('Sign up successful! Now you can log in.');
+                    }
+                })
+                .catch(error => console.error('Error reading user data:', error));
+        }
+
+        function login() {
+            const username = document.getElementById('loginUsername').value;
+            const password = document.getElementById('loginPassword').value;
+
+            // Read user data from the text file
+            fetch('users.txt')
+                .then(response => response.text())
+                .then(userData => {
+                    // Check if the username and password match
+                    const users = userData.split('\n');
+                    const isValidUser = users.some(user => {
+                        const [storedUsername, storedPassword] = user.split(':');
+                        return username === storedUsername && password === storedPassword;
+                    });
+
+                    if (isValidUser) {
+                        alert('Login successful!');
+                        window.location.href = 'resume.html';
+                    } else {
+                        alert('Invalid username or password. Please try again.');
+                    }
+                })
+                .catch(error => console.error('Error reading user data:', error));
+        }
+
+        function saveToFile(filename, content) {
+            // Save content to the text file (replace with secure server-side logic in a real application)
+            const blob = new Blob([content], { type: 'text/plain' });
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+    </script>
+</body>
+</html>
