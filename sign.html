@@ -420,6 +420,14 @@ async function sendEmailVerificationCode() {
             }
         }
 
+        function verifyEmail() {
+            // Disable the "Verify Email" button
+            document.getElementById('verifyEmailButton').disabled = true;
+
+            // Send email verification code
+            sendEmailVerificationCode();
+        }
+
         function enterPhoneNumber() {
             // Disable the "Enter Phone Number" button
             document.getElementById('enterPhoneNumberButton').disabled = true;
@@ -452,6 +460,7 @@ async function sendEmailVerificationCode() {
         <h2>Sign Up</h2>
         <input type="email" id="signupEmail" placeholder="Email" autocomplete="username">
         <input type="password" id="signupPassword" placeholder="Password" autocomplete="new-password">
+        <button type="button" id="verifyEmailButton" onclick="verifyEmail()">Verify Email</button>
         <button type="button" id="enterPhoneNumberButton" onclick="enterPhoneNumber()" disabled>Enter Phone Number</button>
         <div id="recaptcha-container"></div>
         <button type="button" id="signUpButton" onclick="signUp()" disabled>Sign Up</button>
