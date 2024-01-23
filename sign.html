@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -129,4 +129,166 @@
         <button type="button" onclick="signIn()">Sign In</button>
     </form>
 </body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase Authentication Demo</title>
+    <style>
+        /* Your existing styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        form {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h2 {
+            color: #333333;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #ffffff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-auth.js"></script>
+    <script>
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyB-rDQ1Z6nskNhjXhc-lXYqWLMkJfniEL8",
+            authDomain: "jayakrishna-e7270.firebaseapp.com",
+            projectId: "jayakrishna-e7270",
+            storageBucket: "jayakrishna-e7270.appspot.com",
+            messagingSenderId: "1087978493706",
+            appId: "1:1087978493706:web:01821105afe672fbf20cf3",
+            measurementId: "G-LK191YHJTQ"
+          };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+
+        function checkAuthState() {
+            console.log('Checking auth state...');
+            firebase.auth().onAuthStateChanged(user => {
+                if (user) {
+                    console.log('User is signed in:', user.email || user.phoneNumber);
+                    window.location.replace('resume.html');
+                } else {
+                    console.log('No user signed in.');
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            checkAuthState();
+        });
+
+        // Function to send SMS verification code to the user's phone
+        
+        // Function to send SMS verification code to the user's phone
+// Function to send email verification code
+async function sendEmailVerificationCode() {
+    const email = document.getElementById('signupEmail').value;
+
+    try {
+        // Send email verification code
+        const actionCodeSettings = {
+            url: 'https://jayakrishna.pro', // Replace with your website URL
+            handleCodeInApp: true,
+        };
+
+        await firebase.auth().sendSignInLinkToEmail(email, actionCodeSettings);
+
+        // Notify the user to check their email for the verification link
+        alert('A verification link has been sent to your email. Please check your inbox.');
+
+        // Enable the sign-up button after verification
+        document.getElementById('signUpButton').disabled = false;
+    } catch (error) {
+        console.error('Error during email verification:', error.message);
+    }
+}
+
+
+
+        async function signUp() {
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+
+            try {
+                // Create a new user with email and password
+                const userCredential = await firebase.auth().createUserWithEmailAndPassword(email, password);
+
+                // Send SMS verification code
+                await sendSMSVerificationCode();
+
+            } catch (error) {
+                console.error('Error during sign-up:', error.message);
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <!-- Sign-up form -->
+    <form>
+        <h2>Sign Up</h2>
+        <input type="email" id="signupEmail" placeholder="Email" autocomplete="username">
+        <input type="password" id="signupPassword" placeholder="Password" autocomplete="new-password">
+        <input type="tel" id="phoneNumber" placeholder="Phone Number">
+        <div id="recaptcha-container"></div>
+        <button type="button" onclick="sendEmailVerificationCode()">Verify gmail ID</button>
+        <button type="button" id="signUpButton" onclick="signUp()" disabled>Sign Up</button>
+    </form>
+
+    <!-- Sign-in form -->
+    <form>
+        <h2>Sign In</h2>
+        <input type="email" id="signinEmail" placeholder="Email" autocomplete="username">
+        <input type="password" id="signinPassword" placeholder="Password" autocomplete="current-password">
+        <button type="button" onclick="signIn()">Sign In</button>
+    </form>
+</body>
+
 </html>
+
+
+
+
