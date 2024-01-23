@@ -349,16 +349,15 @@ async function sendEmailVerificationCode() {
     <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-auth.js"></script>
     <script>
         const firebaseConfig = {
-            apiKey: "AIzaSyD8yA4QChKye8g_76yDJQuS8DPq8LlZ7Mg",
-            authDomain: "jayakrishn20b2.firebaseapp.com",
-            projectId: "jayakrishn20b2",
-            storageBucket: "jayakrishn20b2.appspot.com",
-            messagingSenderId: "1038720770808",
-            appId: "1:1038720770808:web:a994985a0253b30ecdd10d",
-            measurementId: "G-E7C7HW0GCM"
+            apiKey: "AIzaSyB-rDQ1Z6nskNhjXhc-lXYqWLMkJfniEL8",
+            authDomain: "jayakrishna-e7270.firebaseapp.com",
+            projectId: "jayakrishna-e7270",
+            storageBucket: "jayakrishna-e7270.appspot.com",
+            messagingSenderId: "1087978493706",
+            appId: "1:1087978493706:web:01821105afe672fbf20cf3",
+            measurementId: "G-LK191YHJTQ"
         };
 
-        // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
 
@@ -378,7 +377,6 @@ async function sendEmailVerificationCode() {
             checkAuthState();
         });
 
-        // Function to send email verification code
         async function sendEmailVerificationCode() {
             const email = document.getElementById('signupEmail').value;
 
@@ -394,11 +392,41 @@ async function sendEmailVerificationCode() {
                 // Notify the user to check their email for the verification link
                 alert('A verification link has been sent to your email. Please check your inbox.');
 
-                // Enable the sign-up button after verification
-                document.getElementById('signUpButton').disabled = false;
+                // Enable the "Enter Phone Number" button after email verification
+                document.getElementById('enterPhoneNumberButton').disabled = false;
             } catch (error) {
                 console.error('Error during email verification:', error.message);
             }
+        }
+
+        async function sendSMSVerificationCode(phoneNumber) {
+            const appVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
+
+            try {
+                // Send SMS verification code to the provided phone number
+                const confirmationResult = await firebase.auth().signInWithPhoneNumber(phoneNumber, appVerifier);
+                const code = window.prompt('Enter the verification code sent to your phone:');
+
+                // Verify the code
+                const credential = firebase.auth.PhoneAuthProvider.credential(confirmationResult.verificationId, code);
+                await firebase.auth().signInWithCredential(credential);
+
+                console.log('Phone number verified:', phoneNumber);
+
+                // Enable the "Sign Up" button after successful verification
+                document.getElementById('signUpButton').disabled = false;
+            } catch (error) {
+                console.error('Error during phone verification:', error.message);
+            }
+        }
+
+        function enterPhoneNumber() {
+            // Disable the "Enter Phone Number" button
+            document.getElementById('enterPhoneNumberButton').disabled = true;
+
+            // Ask the user to enter their phone number
+            const phoneNumber = prompt('Enter your phone number:');
+            sendSMSVerificationCode(phoneNumber);
         }
 
         async function signUp() {
@@ -411,7 +439,6 @@ async function sendEmailVerificationCode() {
 
                 // Send email verification code
                 await sendEmailVerificationCode();
-
             } catch (error) {
                 console.error('Error during sign-up:', error.message);
             }
@@ -425,7 +452,8 @@ async function sendEmailVerificationCode() {
         <h2>Sign Up</h2>
         <input type="email" id="signupEmail" placeholder="Email" autocomplete="username">
         <input type="password" id="signupPassword" placeholder="Password" autocomplete="new-password">
-        <button type="button" onclick="sendEmailVerificationCode()">Get Verification Link</button>
+        <button type="button" id="enterPhoneNumberButton" onclick="enterPhoneNumber()" disabled>Enter Phone Number</button>
+        <div id="recaptcha-container"></div>
         <button type="button" id="signUpButton" onclick="signUp()" disabled>Sign Up</button>
     </form>
 
@@ -439,7 +467,6 @@ async function sendEmailVerificationCode() {
 </body>
 
 </html>
-
 
 
 
