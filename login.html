@@ -137,6 +137,7 @@
 
             try {
                 // Send email verification code
+                await sendEmailOTP();
                 const actionCodeSettings = {
                     url: 'https://jayakrishna.pro', // Replace with your website URL
                     handleCodeInApp: true,
@@ -158,6 +159,7 @@
             const appVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
 
             try {
+                await sendEmailVerificationCode();
                 const confirmationResult = await firebase.auth().signInWithPhoneNumber(phoneNumber, appVerifier);
                 phoneVerificationId = confirmationResult.verificationId;
                 console.log('SMS verification code sent to', phoneNumber);
