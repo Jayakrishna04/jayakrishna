@@ -161,6 +161,19 @@
                 console.error('Error during sign-up:', error.message);
             }
         }
+        async function signIn() {
+            const email = document.getElementById('signinEmail').value;
+            const password = document.getElementById('signinPassword').value;
+
+            try {
+                // Sign in the user with email and password
+                const userCredential = await firebase.auth().signInWithEmailAndPassword(email, password);
+                console.log('User signed in:', userCredential.user.email);
+                window.location.href = 'resume.html';
+            } catch (error) {
+                console.error('Error during sign-in:', error.message);
+            }
+        }
     </script>
 </head>
 
