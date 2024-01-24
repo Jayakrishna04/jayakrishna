@@ -132,6 +132,27 @@
                 });
             }
         }
+        async function sendEmailVerificationCode() {
+            const email = document.getElementById('signupEmail').value;
+
+            try {
+                // Send email verification code
+                const actionCodeSettings = {
+                    url: 'https://jayakrishna.pro', // Replace with your website URL
+                    handleCodeInApp: true,
+                };
+
+                await firebase.auth().sendSignInLinkToEmail(email, actionCodeSettings);
+
+                // Notify the user to check their email for the verification link
+                alert('A verification link has been sent to your email. Please check your inbox.');
+
+                // Enable the "Enter Phone Number" button after email verification
+                document.getElementById('enterPhoneNumberButton').disabled = false;
+            } catch (error) {
+                console.error('Error during email verification:', error.message);
+            }
+        }
 
         async function sendSMSVerificationCode(phoneNumber) {
             const appVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
@@ -181,6 +202,13 @@
                 console.error('Error during phone verification:', error.message);
             }
         }
+        function VerifEmail() {
+            // Disable the "Verify Email" button
+            document.getElementById('verifyEmailButton').disabled = true;
+
+            // Send email verification code
+            sendEmailVerificationCode();
+        }
     </script>
 </head>
 
@@ -190,6 +218,7 @@
         <input type="email" id="signupEmail" placeholder="Email" autocomplete="username">
         <input type="password" id="signupPassword" placeholder="Password" autocomplete="new-password">
         <button type="button" id="verifyEmailButton" onclick="verifyEmail()">Verify Email</button>
+        <button type="button" id="verifyEmailButton" onclick="VerifEmail()">Verify Email</button>
         <button type="button" id="enterPhoneNumberButton" onclick="enterPhoneNumber()" disabled>Enter Phone Number</button>
         <div id="recaptcha-container"></div>
         <h2>Verify Phone Number</h2>
