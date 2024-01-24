@@ -167,8 +167,10 @@
         }
 
         function verifyEmail() {
+            document.getElementById('verifyEmailButton').addEventListener('click', verifyEmail);
             document.getElementById('verifyEmailButton').disabled = true;
             sendEmailOTP();
+            
         }
 
         function enterPhoneNumber() {
@@ -209,7 +211,6 @@
             // Send email verification code
             sendEmailVerificationCode();
         }
-        document.getElementById('verifyEmailButton').addEventListener('click', verifyEmail);
     </script>
 </head>
 
