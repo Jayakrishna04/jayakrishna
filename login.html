@@ -174,7 +174,7 @@
             
         }
 
-        function enterPhoneNumber() {
+        async function enterPhoneNumber() {
             await userEmail();
             const phoneNumber = prompt('Enter your phone number:');
             sendSMSVerificationCode(phoneNumber);
@@ -206,7 +206,7 @@
                 console.error('Error during phone verification:', error.message);
             }
         }
-        function userEmail() {
+        async function userEmail() {
             // Disable the "Verify Email" button
             await verifyBro();
             document.getElementById('verifyEmail').disabled = true;
