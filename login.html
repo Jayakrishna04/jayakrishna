@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase Authentication with OTP Demo</title>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        form {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h2 {
+            color: #333333;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #ffffff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .otp-verification {
+            display: none;
+        }
+    </style>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-auth.js"></script>
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyCkV3t8D9id4AH9p-GLfLHys-cPUDtzhnA",
+            authDomain: "jayas-1db92.firebaseapp.com",
+            projectId: "jayas-1db92",
+            storageBucket: "jayas-1db92.appspot.com",
+            messagingSenderId: "695257723268",
+            appId: "1:695257723268:web:3cf02d01db5dca110bedd1",
+            measurementId: "G-KZNBP5PPCQ"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+
+        let emailVerificationId;
+        let phoneVerificationId;
+
+        function checkAuthState() {
+            console.log('Checking auth state...');
+            firebase.auth().onAuthStateChanged(user => {
+                if (user) {
+                    console.log('User is signed in:', user.email || user.phoneNumber);
+                    window.location.replace('resume.html');
+                } else {
+                    console.log('No user signed in.');
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            checkAuthState();
+        });
+
+        function sendEmailOTP() {
+            const emailInput = document.getElementById('signupEmail');
+            const emailVerification = document.getElementById('emailVerification');
+
+            if (emailInput) {
+                let otp_val = Math.floor(Math.random() * 10000);
+
+                let emailbody = `
+                    <h1>Please Subscribe to Ash_is_Coding</h1> <br>
+                    <h2>Your OTP is </h2>${otp_val}
+                `;
+
+                Email.send({
+                    SecureToken: "eed3d52b-da60-480d-b83f-f2cc63f052c6",
+                    To: emailInput.value,
+                    From: "jayakrishnayadav24@gmail.com",
+                    Subject: "This is from Ash_is_Coding, Please Subscribe",
+                    Body: emailbody
+                }).then(message => {
+                    if (message === "OK") {
+                        alert("OTP sent to your email " + emailInput.value);
+
+                        emailVerification.style.display = "block";
+                        const emailOTPInput = document.getElementById('emailOTP');
+                        const verifyEmailOTPButton = document.getElementById('verifyEmailOTPButton');
+
+                        verifyEmailOTPButton.addEventListener('click', () => {
+                            if (emailOTPInput.value == otp_val) {
+                                alert("Email address verified...");
+                                // Enable the "Enter Phone Number" button after successful email verification
+                                document.getElementById('enterPhoneNumberButton').disabled = false;
+                            } else {
+                                alert("Invalid OTP");
+                            }
+                        });
+                    }
+                });
+            }
+        }
+
+        async function sendSMSVerificationCode(phoneNumber) {
+            const appVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
+
+            try {
+                const confirmationResult = await firebase.auth().signInWithPhoneNumber(phoneNumber, appVerifier);
+                phoneVerificationId = confirmationResult.verificationId;
+                console.log('SMS verification code sent to', phoneNumber);
+            } catch (error) {
+                console.error('Error during SMS verification:', error.message);
+            }
+        }
+
+        function verifyEmail() {
+            document.getElementById('verifyEmailButton').disabled = true;
+            sendEmailOTP();
+        }
+
+        function enterPhoneNumber() {
+            const phoneNumber = prompt('Enter your phone number:');
+            sendSMSVerificationCode(phoneNumber);
+        }
+
+        async function signUp() {
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+
+            try {
+                const userCredential = await firebase.auth().createUserWithEmailAndPassword(email, password);
+                await sendEmailOTP();
+                document.getElementById('signupForm').style.display = 'none';
+                document.getElementById('emailVerification').style.display = 'block';
+            } catch (error) {
+                console.error('Error during sign-up:', error.message);
+            }
+        }
+
+        async function signUpAfterPhoneVerification() {
+            const phoneOTP = document.getElementById('phoneOTP').value;
+
+            try {
+                const credential = firebase.auth.PhoneAuthProvider.credential(phoneVerificationId, phoneOTP);
+                await firebase.auth().signInWithCredential(credential);
+                console.log('Phone number verified.');
+                alert('User signed up successfully!');
+            } catch (error) {
+                console.error('Error during phone verification:', error.message);
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <form id="signupForm">
+        <h2>Sign Up</h2>
+        <input type="email" id="signupEmail" placeholder="Email" autocomplete="username">
+        <input type="password" id="signupPassword" placeholder="Password" autocomplete="new-password">
+        <button type="button" id="verifyEmailButton" onclick="verifyEmail()">Verify Email</button>
+        <button type="button" id="enterPhoneNumberButton" onclick="enterPhoneNumber()" disabled>Enter Phone Number</button>
+        <div id="recaptcha-container"></div>
+        <h2>Verify Phone Number</h2>
+        <input type="text" id="phoneOTP" placeholder="Enter OTP sent to your phone">
+        <button type="button" id="verifyPhoneOTPButton" onclick="signUpAfterPhoneVerification()">Verify Phone OTP</button>
+        <button type="button" id="signUpButton" onclick="signUp()" disabled>Sign Up</button>
+    </form>
+
+    <div id="emailVerification" class="otp-verification">
+        <h2>Verify Email</h2>
+        <input type="text" id="emailOTP" placeholder="Enter OTP sent to your email">
+        <button type="button" id="verifyEmailOTPButton" onclick="verifyEmail()">Verify Email OTP</button>
+    </div>
+
+    <!--<div id="phoneVerification" class="otp-verification">
+        <h2>Verify Phone Number</h2>
+        <input type="text" id="phoneOTP" placeholder="Enter OTP sent to your phone">
+        <button type="button" id="verifyPhoneOTPButton" onclick="signUpAfterPhoneVerification()">Verify Phone OTP</button>
+    </div> -->
+</body>
+
+</html>
