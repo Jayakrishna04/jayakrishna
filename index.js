@@ -145,7 +145,7 @@ const firebaseConfig = {
         }
         async function userEmail() {
             // Disable the "Verify Email" button
-            await verifyBro();
+         //   await verifyBro();
             document.getElementById('verifyEmail').disabled = true;
 
             // Send email verification code
