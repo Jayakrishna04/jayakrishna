@@ -61,7 +61,8 @@ const firebaseConfig = {
                             if (emailOTPInput.value == otp_val) {
                                 alert("Email address verified...");
                                 // Enable the "Enter Phone Number" button after successful email verification
-                                document.getElementById('enterPhoneNumberButton').disabled = false;
+                               // document.getElementById('enterPhoneNumberButton').disabled = false;
+                              document.getElementById('verifyEmailOTPButton').disabled = false;
                             } else {
                                 alert("Invalid OTP");
                             }
@@ -147,7 +148,7 @@ const firebaseConfig = {
         async function userEmail() {
             // Disable the "Verify Email" button
          //   await verifyBro();
-            document.getElementById('verifyEmail').disabled = true;
+            //document.getElementById('verifyEmail').disabled = true;
 
             // Send email verification code
             sendEmailVerificationCode();
