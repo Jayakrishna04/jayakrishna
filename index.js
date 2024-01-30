@@ -62,6 +62,7 @@ const firebaseConfig = {
                                 alert("Email address verified...");
                                 // Enable the "Enter Phone Number" button after successful email verification
                                // document.getElementById('enterPhoneNumberButton').disabled = false;
+                              document.getElementById('verifyEmail').disabled = false;
                               document.getElementById('verifyEmailOTPButton').disabled = false;
                             } else {
                                 alert("Invalid OTP");
