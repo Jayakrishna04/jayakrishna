@@ -116,8 +116,20 @@ const firebaseConfig = {
 
         async function enterPhoneNumber() {
            // await userEmail();
-            const phoneNumber = prompt('Enter your phone number:');
-            sendSMSVerificationCode(phoneNumber);
+           // const phoneNumber = prompt('Enter your phone number: if u use ');
+           // sendSMSVerificationCode(phoneNumber);
+          // Prompt the user to enter their phone number
+          const phoneNumber = prompt('Enter your phone number in the format +91XXXXXXXXXX:');
+
+// Validate the entered phone number (you may want to implement more robust validation)
+          if (/^\+91\d{10}$/.test(phoneNumber)) {
+    // The entered phone number is in the correct format
+          sendSMSVerificationCode(phoneNumber);
+          } else {
+    // Inform the user that the entered phone number is not in the correct format
+          alert('Please enter a valid phone number in the format +91XXXXXXXXXX.');
+          }
+
         }
 
         async function signUp() {
