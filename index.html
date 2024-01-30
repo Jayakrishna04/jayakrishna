@@ -43,19 +43,15 @@
         #password {
             width: calc(100% - 40px);
         }
-        h1, h2, h3 {
-            color: #007bff;
-        }
 
         h2 {
+            color: #007bff;
             border-bottom: 2px solid #007bff;
             padding-bottom: 5px;
             margin-top: 20px;
         }
+
         label {
-            color: #007bff;
-        }
-        .a {
             color: #007bff;
         }
 
@@ -68,6 +64,7 @@
         }
 
         button {
+            width: 100%;
             background-color: #007bff;
             color: #fff;
             padding: 10px;
@@ -76,24 +73,42 @@
             cursor: pointer;
         }
 
+        .google-signin-button {
+            width: 100%;
+            background-color: #4285F4;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .h5-divider {
+            display: flex;
+            align-items: center;
+            color: #007bff;
+            margin: 20px 0;
+        }
+
+        .h5-divider::before,
+        .h5-divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 2px solid #007bff;
+            margin: 0 10px;
+        }
+
+        .h5-text {
+            flex: 0 0 auto;
+            padding: 0 10px;
+        }
+
         .moving-gif {
             position: absolute;
             top: 80%;
             transform: translateY(-50%);
             animation: moveLeftToRight 10s linear infinite;
-        }
-
-        @keyframes moveLeftToRight {
-            0% { left: -100px; }
-            100% { left: calc(100% + 100px); }
-        }
-
-        .game-link {
-            color: #3535f2;
-            text-decoration: underline;
-            cursor: pointer;
-            display: block;
-            margin-top: 20px;
         }
         .moving-gifs {
             position: absolute;
@@ -106,6 +121,12 @@
             top: 75%;
             transform: translateY(-50%);
             animation: moveLeftToRight 10s linear infinite;
+        }
+
+
+        @keyframes moveLeftToRight {
+            0% { left: -100px; }
+            100% { left: calc(100% + 100px); }
         }
 
     </style>
@@ -125,63 +146,21 @@
             <input type="password" id="password" name="password" required>
             <span class="eye-icon" onclick="togglePassword()">👁️</span>
         </label>
-
         <button type="button" onclick="login()">Login</button>
+        <div class="h5-divider">
+            <span class="h5-text">or</span>
+        </div>
+
+        <button class="google-signin-button" onclick="signInWithGoogle()">Sign in with Google</button>
+    
     </form>
 
 
     <a class="game-link" href="node.html">Click here to play the sample game</a>
-
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-firestore.js"></script>
     
-    <script>
-        function login() {
-            var username = document.getElementById('username').value;
-            var passwordInput = document.getElementById('password');
-            var password = passwordInput.value;
-
-            // Check credentials
-            switch (username) {
-                case 'admin':
-                    if (password === 'admin') {
-                        // Redirect to the resume page for admin
-                        window.location.href = 'resume.html';
-                    } else {
-                        alert('Invalid password. Please try again.');
-                    }
-                    break;
-                case 'jayakrishna':
-                    if (password === 'jayakrishna') {
-                        // Redirect to myresume page for jayakrishna
-                        window.location.href = 'myresume.html';
-                    } else {
-                        alert('Invalid password. Please try again.');
-                    }
-                    break;
-                case 'jaya':
-                    if (password === 'jaya') {
-                        // Redirect to node page for jaya
-                        window.location.href = 'node.html';
-                    } else {
-                        alert('Invalid password. Please try again.');
-                    }
-                    break;
-                default:
-                    alert('Invalid username. Please try again.');
-            }
-        }
-
-        function togglePassword() {
-            var passwordInput = document.getElementById('password');
-            var eyeIcon = document.querySelector('.eye-icon');
-
-            if (passwordInput.type === 'password') {
-                passwordInput.type = 'text';
-                eyeIcon.textContent = '👁️';
-            } else {
-                passwordInput.type = 'password';
-                eyeIcon.textContent = '👁️';
-            }
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
