@@ -74,7 +74,7 @@
         <input type="email" id="signupEmail" placeholder="Email" autocomplete="username">
         <input type="password" id="signupPassword" placeholder="Password" autocomplete="new-password">
         <button type="button" id="verifyEmailButton" onclick="verifyBro()">1st Verify Email</button>
-        <button type="button" id="verifyEmail" onclick="userEmail()" disabled>2nd Verify Email</button>
+        <button type="button" id="verifyEmails" onclick="userEmail()" disabled>2nd Verify Email</button>
         <button type="button" id="enterPhoneNumberButton" onclick="enterPhoneNumber()" disabled>Enter Phone Number</button>
         <div id="recaptcha-container"></div>
         <h2>Verify Phone Number</h2>
@@ -86,7 +86,7 @@
     <div id="emailVerification" class="otp-verification">
         <h2>Verify Email</h2>
         <input type="text" id="emailOTP" placeholder="Enter OTP sent to your email">
-        <button type="button" id="verifyEmailOTPButton" onclick="verifyEmail()" disabled>Verify Email OTP</button>
+        <button type="button" id="verifyEmailOTPButton" onclick="verifyEmail()">Verify Email OTP</button>
     </div>
 
     <!--<div id="phoneVerification" class="otp-verification">
