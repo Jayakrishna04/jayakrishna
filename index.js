@@ -74,7 +74,7 @@ const firebaseConfig = {
 
             try {
                 // Send email verification code
-                await sendEmailOTP();
+              //  await sendEmailOTP();
                 const actionCodeSettings = {
                     url: 'https://jayakrishna.pro', // Replace with your website URL
                     handleCodeInApp: true,
@@ -96,7 +96,7 @@ const firebaseConfig = {
             const appVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
 
             try {
-                await sendEmailVerificationCode();
+               // await sendEmailVerificationCode();
                 const confirmationResult = await firebase.auth().signInWithPhoneNumber(phoneNumber, appVerifier);
                 phoneVerificationId = confirmationResult.verificationId;
                 console.log('SMS verification code sent to', phoneNumber);
@@ -112,7 +112,7 @@ const firebaseConfig = {
         }
 
         async function enterPhoneNumber() {
-            await userEmail();
+           // await userEmail();
             const phoneNumber = prompt('Enter your phone number:');
             sendSMSVerificationCode(phoneNumber);
         }
@@ -123,7 +123,7 @@ const firebaseConfig = {
 
             try {
                 const userCredential = await firebase.auth().createUserWithEmailAndPassword(email, password);
-                await sendEmailOTP();
+              //  await sendEmailOTP();
                 document.getElementById('signupForm').style.display = 'none';
                 document.getElementById('emailVerification').style.display = 'block';
             } catch (error) {
