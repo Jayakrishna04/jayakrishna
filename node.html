@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,6 +21,7 @@
         }
     </style>
 </head>
+
 <body>
     <canvas id="gameCanvas"></canvas>
 
@@ -77,17 +79,19 @@
             if (keys.right) spaceship.x += spaceship.speed;
             if (keys.up) spaceship.y -= spaceship.speed;
             if (keys.down) spaceship.y += spaceship.speed;
-        
+
             spaceship.x = Math.max(spaceship.width / 2, Math.min(canvas.width - spaceship.width / 2, spaceship.x));
             spaceship.y = Math.max(spaceship.height / 2, Math.min(canvas.height - spaceship.height / 2, spaceship.y));
-        
+
             // Update bullets
             bullets.forEach(bullet => {
+                bullet.y -= 10;
+
                 // If spaceship is moving upwards, make bullets go in the opposite direction
                 const bulletDirection = keys.up ? -1 : keys.down ? 1 : 0;
                 bullet.y -= 10 * bulletDirection;
             });
-        
+
             // Update balls
             balls.forEach(ball => {
                 ball.y += 5;
@@ -95,12 +99,12 @@
                     ball.y = -ball.radius;
                     ball.x = Math.random() * canvas.width;
                 }
-        
+
                 bullets.forEach(bullet => {
                     const dx = bullet.x - ball.x;
                     const dy = bullet.y - ball.y;
                     const distance = Math.sqrt(dx * dx + dy * dy);
-        
+
                     if (distance < ball.radius + 5) {
                         // Bullet hit the ball
                         score += 10;
@@ -110,10 +114,6 @@
                 });
             });
         }
-        
-        
-        
-        
 
         function draw() {
             // Clear canvas
@@ -166,7 +166,7 @@
         });
 
         canvas.addEventListener('click', () => {
-            bullets.push({ x: spaceship.x, y: spaceship.y });
+            fireBullet();
         });
 
         // Touch control
@@ -176,6 +176,7 @@
         canvas.addEventListener('touchstart', (e) => {
             touchStartX = e.touches[0].clientX;
             touchStartY = e.touches[0].clientY;
+            fireBullet(); // Fire a bullet when touch starts
         });
 
         canvas.addEventListener('touchmove', (e) => {
@@ -219,6 +220,10 @@
             keys.down = false;
         });
 
+        function fireBullet() {
+            bullets.push({ x: spaceship.x, y: spaceship.y });
+        }
+
         // Initialize balls
         for (let i = 0; i < 5; i++) {
             balls.push({
@@ -231,4 +236,5 @@
         gameLoop();
     </script>
 </body>
+
 </html>
