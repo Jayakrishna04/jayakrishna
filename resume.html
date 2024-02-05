@@ -93,6 +93,23 @@
     </style>
 </head>
 <body>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-firestore.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Check if the user is authenticated
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+                // User is signed in, allow access to resume.html content
+                console.log('User is signed in:', user.displayName);
+            } else {
+                // User is not signed in, redirect to login page or any other page
+                console.log('User is not signed in. Redirecting to login page.');
+                window.location.href = 'index.html';  // Change this to your login page
+            }
+        });
+    </script>
     <header>
         <h1 style="font-size: 36px; font-weight: bold;">Pothuraju Jayakrishna Yadav</h1>
         <p style="font-size: 18px;">Aspiring DevOps Engineer</p>
