@@ -46,14 +46,15 @@
   measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID
 };*/
 const firebaseConfig = {
-  apiKey: window.env.GITHUBSECRET_API_KEYS,
-  authDomain: window.env.GITHUBSECRET_AUTH_DOMAIN,
-  projectId: window.env.GITHUBSECRET_PROJECT_ID,
-  storageBucket: window.env.REACTAPP_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: window.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
-  appId: window.env.REACT_APP_FIREBASE_APP_ID,
-  measurementId: window.env.REACT_APP_FIREBASE_MEASUREMENT_ID
+  apiKey: window.GITHUBSECRET_API_KEYS,
+  authDomain: window.GITHUBSECRET_AUTH_DOMAIN,
+  projectId: window.GITHUBSECRET_PROJECT_ID,
+  storageBucket: window.REACTAPP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: window.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: window.REACT_APP_FIREBASE_APP_ID,
+  measurementId: window.REACT_APP_FIREBASE_MEASUREMENT_ID
 };
+
 
 
 
