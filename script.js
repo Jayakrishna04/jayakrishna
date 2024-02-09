@@ -56,7 +56,7 @@ const firebaseConfig = {
   databaseURL: process.env.REACT_APP_FIREBASE_DATABASE_URL || 'default-database-url',
 };
 
-export default firebaseConfig;
+//export default firebaseConfig;
 
 
 
