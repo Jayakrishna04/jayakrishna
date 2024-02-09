@@ -1,11 +1,11 @@
 const firebaseConfig = {
-            apiKey: "AIzaSyCkV3t8D9id4AH9p-GLfLHys-cPUDtzhnA",
-            authDomain: "jayas-1db92.firebaseapp.com",
-            projectId: "jayas-1db92",
-            storageBucket: "jayas-1db92.appspot.com",
-            messagingSenderId: "695257723268",
-            appId: "1:695257723268:web:3cf02d01db5dca110bedd1",
-            measurementId: "G-KZNBP5PPCQ"
+            apiKey: "process.env.GITHUBSECRETAPIKEY",
+            authDomain: "process.env.GITHUBSECRETAUTHDOMAIN",
+            projectId: "process.env.GITHUBSECRETPROJECTID",
+            storageBucket: "process.env.REACT_APP_FIREBASE_STORAGE_BUCKET",
+            messagingSenderId: "process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID",
+            appId: "process.env.REACT_APP_FIREBASE_APP_ID",
+            measurementId: "process.env.REACT_APP_FIREBASE_MEASUREMENT_ID"
           };
 
 
