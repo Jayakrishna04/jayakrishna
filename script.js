@@ -46,14 +46,13 @@
   measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID
 };*/
 const firebaseConfig = {
-  apiKey: process.env.GITHUBSECRETAPIKEY || 'default-api-key',
-  authDomain: process.env.GITHUBSECRETAUTHDOMAIN || 'default-auth-domain',
-  projectId: process.env.GITHUBSECRETPROJECTID || 'default-project-id',
-  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET || 'default-storage-bucket',
-  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID || 'default-messaging-sender-id',
-  appId: process.env.REACT_APP_FIREBASE_APP_ID || 'default-app-id',
-  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID || 'default-measurement-id',
-  databaseURL: process.env.REACT_APP_FIREBASE_DATABASE_URL || 'default-database-url',
+  apiKey: process.env.GITHUBSECRETAPIKEY,
+  authDomain: process.env.GITHUBSECRETAUTHDOMAIN,
+  projectId: process.env.GITHUBSECRETPROJECTID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID,
+  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
 };
 
 //export default firebaseConfig;
