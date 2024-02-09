@@ -1,67 +1,12 @@
-/*const firebaseConfig = {
-            apiKey: "process.env.GITHUBSECRETAPIKEY",
-            authDomain: "process.env.GITHUBSECRETAUTHDOMAIN",
-            projectId: "process.env.GITHUBSECRETPROJECTID",
-            storageBucket: "process.env.REACT_APP_FIREBASE_STORAGE_BUCKET",
-            messagingSenderId: "process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID",
-            appId: "process.env.REACT_APP_FIREBASE_APP_ID",
-            measurementId: "process.env.REACT_APP_FIREBASE_MEASUREMENT_ID"
-          }; */
-/*const firebaseConfig = {
-  apiKey: `${process.env.GITHUB_SECRET_API_KEY}`,
-  authDomain: `${process.env.GITHUB_SECRET_AUTH_DOMAIN}`,
-  projectId: `${process.env.GITHUB_SECRET_PROJECT_ID}`,
-  storageBucket: `${process.env.REACT_APP_FIREBASE_STORAGE_BUCKET}`,
-  messagingSenderId: `${process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID}`,
-  appId: `${process.env.REACT_APP_FIREBASE_APP_ID}`,
-  measurementId: `${process.env.REACT_APP_FIREBASE_MEASUREMENT_ID}`
-};
-*/
-/*const firebaseConfig = {
-  apiKey:'AIzaSyBnDDmCyajBixG3OpjbEl21Y2-lvXicEVc',
-  authDomain: process.env.GITHUBSECRETAUTHDOMAIN,
-  projectId: process.env.GITHUBSECRETPROJECTID,
-  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.REACT_APP_FIREBASE_APP_ID,
-  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID
-};
-*/
-/*const firebaseConfig = {
-  apiKey: `${process.env.GITHUBSECRETAPIKEY}`,
-  authDomain: `${process.env.GITHUBSECRETAUTHDOMAIN}`,
-  projectId: `${process.env.GITHUBSECRETPROJECTID}`,
-  storageBucket: `${process.env.REACT_APP_FIREBASE_STORAGE_BUCKET}`,
-  messagingSenderId: `${process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID}`,
-  appId: `${process.env.REACT_APP_FIREBASE_APP_ID}`,
-  measurementId: `${process.env.REACT_APP_FIREBASE_MEASUREMENT_ID}`
-};*/
-/*const firebaseConfig = {
-  apiKey: process.env.GITHUBSECRET_API_KEYS,
-  authDomain: process.env.GITHUBSECRET_AUTH_DOMAIN,
-  projectId: process.env.GITHUBSECRET_PROJECT_ID,
-  storageBucket: process.env.REACTAPP_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.REACT_APP_FIREBASE_APP_ID,
-  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID
-};*/
 const firebaseConfig = {
-  apiKey: process.env.GITHUBSECRETAPIKEY,
-  authDomain: process.env.GITHUBSECRETAUTHDOMAIN,
-  projectId: process.env.GITHUBSECRETPROJECTID,
-  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.REACT_APP_FIREBASE_APP_ID,
-  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
+  apiKey: "AIzaSyCkV3t8D9id4AH9p-GLfLHys-cPUDtzhnA",
+  authDomain: "jayas-1db92.firebaseapp.com",
+  projectId: "jayas-1db92",
+  storageBucket: "jayas-1db92.appspot.com",
+  messagingSenderId: "695257723268",
+  appId: "1:695257723268:web:3cf02d01db5dca110bedd1",
+  measurementId: "G-KZNBP5PPCQ"
 };
-
-//export default firebaseConfig;
-
-
-
-
-
-
 
           firebase.initializeApp(firebaseConfig);
           const auth = firebase.auth();
