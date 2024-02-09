@@ -17,7 +17,7 @@
   measurementId: `${process.env.REACT_APP_FIREBASE_MEASUREMENT_ID}`
 };
 */
-const firebaseConfig = {
+/*const firebaseConfig = {
   apiKey:'AIzaSyBnDDmCyajBixG3OpjbEl21Y2-lvXicEVc',
   authDomain: process.env.GITHUBSECRETAUTHDOMAIN,
   projectId: process.env.GITHUBSECRETPROJECTID,
@@ -25,6 +25,16 @@ const firebaseConfig = {
   messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.REACT_APP_FIREBASE_APP_ID,
   measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID
+};
+*/
+const firebaseConfig = {
+  apiKey: `${process.env.GITHUBSECRETAPIKEY}`,
+  authDomain: `${process.env.GITHUBSECRETAUTHDOMAIN}`,
+  projectId: `${process.env.GITHUBSECRETPROJECTID}`,
+  storageBucket: `${process.env.REACT_APP_FIREBASE_STORAGE_BUCKET}`,
+  messagingSenderId: `${process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID}`,
+  appId: `${process.env.REACT_APP_FIREBASE_APP_ID}`,
+  measurementId: `${process.env.REACT_APP_FIREBASE_MEASUREMENT_ID}`
 };
 
 
