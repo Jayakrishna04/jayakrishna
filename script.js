@@ -18,7 +18,7 @@
 };
 */
 const firebaseConfig = {
-  apiKey: process.env.GITHUBSECRETAPIKEY,
+  apiKey:'AIzaSyBnDDmCyajBixG3OpjbEl21Y2-lvXicEVc',
   authDomain: process.env.GITHUBSECRETAUTHDOMAIN,
   projectId: process.env.GITHUBSECRETPROJECTID,
   storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
